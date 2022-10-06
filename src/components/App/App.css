@@ -1,0 +1,19 @@
+.page {
+    font-family: "Inter", "Arial", "sans-serif", "Helvetica";
+    font-weight: 400;
+    background-color: white;
+    color: black;
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    position: relative;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+}
