@@ -23,7 +23,7 @@
 }
 
 .movies-card__like {
-    background-image: url(../../images/Like.svg);
+    background-image: url(../../images/like.svg);
     background-repeat: no-repeat;
     background-size: cover;
     width: 24px;
@@ -42,7 +42,7 @@
 }
 
 .movies-card__dislike {
-    background-image: url(../../images/Dislike.svg);
+    background-image: url(../../images/dislike.svg);
     background-repeat: no-repeat;
     background-size: cover;
     width: 24px;
@@ -61,7 +61,7 @@
 }
 
 .movies-card__delete {
-    background-image: url(../../images/Delete.svg);
+    background-image: url(../../images/delete.svg);
     background-repeat: no-repeat;
     background-size: cover;
     width: 24px;
