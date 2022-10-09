@@ -1,15 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logotype from '../../images/Logotype.svg';
+import mainApi from "../../utils/MainApi.js";
 
 function Register() {
+    function handleSubmit (event) {
+        event.preventDefault();
+        mainApi.registration({
+            name: event.target.name.value,
+            email: event.target.email.value,
+            password: event.target.password.value,
+        }).then((data) => {
+            console.log(data);
+        })
+    }
+
     return (
         <section className='login'>
             <Link className='login__logo-link' to='/'>
                 <img className='header__logo header__logo_register' src={logotype} alt='Логотип'/>
             </Link>
             <h1 className='login__title'>Добро пожаловать!</h1>
-            <form className='login__form'>
+            <form className='login__form' onSubmit={handleSubmit}>
                 <p className="login__field">Имя</p>
                 <input name='name' id='name' type='name' className='login__input login__input_type_name' required/>
                 <p className="login__field">E-mail</p>
