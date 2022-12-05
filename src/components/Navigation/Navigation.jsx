@@ -16,8 +16,8 @@ function Navigation({ isNavOpen, closeBurger }) {
             <li className='navigation__list-item'>
               <NavLink to='/saved-movies' activeClassName='navigation__list-item_active' className='navigation__list-link'>Сохранённые фильмы</NavLink>
             </li>
-            <li className='navigation__list-item header__account header__account_visible'>
-              <NavLink to='/profile' className='header__list-link header__profile header__image'>Аккаунт</NavLink>
+            <li className='navigation__list-item header__acc header__acc_visible'>
+              <NavLink to='/profile' className='header__link header__profile header__pic'>Аккаунт</NavLink>
             </li>
           </ul>
         </nav>

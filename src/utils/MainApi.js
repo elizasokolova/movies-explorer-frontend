@@ -1,4 +1,5 @@
 import { baseUrl } from "./config.js";
+import handleResponse from "./handleResponse";
 
 class MainApi {
     constructor({ baseUrl }) {
@@ -8,83 +9,96 @@ class MainApi {
         };
     }
 
-    _handleResponse = (response) => {
-        if (response.ok) {
-            return response.json();
-        }
-        return Promise.reject({
-            message: response.statusText,
-            status: response.status,
-        });
-    };
-
-    login(data) {
-        return fetch(`${this._baseUrl}/signin`, {
-            method: "POST",
-            credentials: "include",
+    getUserInfo() {
+        return fetch(`${this._baseUrl}/users/me`, {
+            method: "GET",
             headers: this._headers,
-            body: JSON.stringify(data),
-        }).then(this._handleResponse);
+            credentials: 'include',
+            withCredentials: true,
+        }).then(handleResponse);
     }
 
-    registration(data) {
+    registration(name, email, password) {
         return fetch(`${this._baseUrl}/signup`, {
             method: "POST",
-            headers: this._headers,
-            body: JSON.stringify(data),
-        }).then(this._handleResponse);
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({name, email, password})
+        }).then(handleResponse);
     }
 
-    async getUserInfo() {
-        return await fetch(`${this._baseUrl}/users/me`, {
-            credentials: "include",
+    login(email, password) {
+        return fetch(`${this._baseUrl}/signin`, {
+            method: "POST",
+            credentials: 'include',
             headers: this._headers,
-        }).then(this._handleResponse);
-    }
-
-    patchUserInfo(data) {
-        return fetch(`${this._baseUrl}/users/me`, {
-            method: "PATCH",
-            credentials: "include",
-            headers: this._headers,
-            body: JSON.stringify(data),
-        }).then(this._handleResponse);
+            body: JSON.stringify({password, email})
+        }).then(handleResponse);
     }
 
     logout() {
         return fetch(`${this._baseUrl}/signout`, {
-            credentials: "include",
+            method: "POST",
+            credentials: 'include',
+            withCredentials: true,
             headers: this._headers,
-        }).then(this._handleResponse);
+        }).then(handleResponse);
     }
 
-    getSavedMovies() {
+    updateProfile(name, email) {
+        return fetch(`${this._baseUrl}/users/me`, {
+            method: 'PATCH',
+            credentials: 'include',
+            withCredentials: true,
+            headers: this._headers,
+            body: JSON.stringify({ name, email }),
+        }).then(handleResponse);
+    }
+
+    getSavedFilms() {
         return fetch(`${this._baseUrl}/movies`, {
-            credentials: "include",
+            method: "GET",
+            credentials: 'include',
+            withCredentials: true,
             headers: this._headers,
-        }).then(this._handleResponse);
+        }).then(handleResponse);
     }
 
-    saveMovie(movie) {
+    saveFilm(film) {
         return fetch(`${this._baseUrl}/movies`, {
             method: "POST",
-            credentials: "include",
+            credentials: 'include',
+            withCredentials: true,
             headers: this._headers,
-            body: JSON.stringify(movie),
-        }).then(this._handleResponse);
+            body: JSON.stringify({
+                country: film.country || 'Нет данных',
+                director: film.director || 'Нет данных',
+                duration: film.duration || 0,
+                year: film.year || 'Нет данных',
+                description: film.description,
+                image: `https://api.nomoreparties.co${film.image.url}`,
+                trailerLink: film.trailerLink || 'https://www.youtube.com',
+                nameRU: film.nameRU,
+                nameEN: film.nameEN,
+                thumbnail: `https://api.nomoreparties.co${film.image.formats.thumbnail.url}`,
+                movieId: film.id,
+            }),
+        }).then(handleResponse);
     }
 
-    deleteMovie(id) {
-        return fetch(`${this._baseUrl}/movies/${id}`, {
+    deleteFilm(film) {
+        return fetch(`${this._baseUrl}/movies/${film._id}`, {
             method: "DELETE",
-            credentials: "include",
-            headers: this._headers,
-        }).then(this._handleResponse);
+            credentials: 'include',
+            withCredentials: true,
+            headers:this._headers,
+        }).then(handleResponse);
     }
 }
 
-const mainApi = new MainApi({
-    baseUrl: baseUrl,
-});
+const mainApi = new MainApi({ baseUrl });
 
 export default mainApi;

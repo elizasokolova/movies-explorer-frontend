@@ -1,34 +1,24 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard.jsx';
-import bookseller from '../../images/Bookseller.jpg';
 
-function MoviesCardList() {
+function MoviesCardList ({
+    movies,
+    handleFilmClick,
+    filmsQuantity,
+    storedFilm
+}) {
     return (
         <section className="cards">
             <ul className="cards__movies">
-                <MoviesCard preview={bookseller} title={'Книготорговцы'} time={'1ч 42м'} />
-                <MoviesCard preview={bookseller} title={'Книготорговцы'} time={'1ч 42м'} />
-                <MoviesCard preview={bookseller} title={'Книготорговцы'} time={'1ч 42м'} />
-                <MoviesCard preview={bookseller} title={'Книготорговцы'} time={'1ч 42м'} />
-                <MoviesCard preview={bookseller} title={'Книготорговцы'} time={'1ч 42м'} />
-                <MoviesCard preview={bookseller} title={'Книготорговцы'} time={'1ч 42м'} />
-                <MoviesCard preview={bookseller} title={'Книготорговцы'} time={'1ч 42м'} />
-                <MoviesCard preview={bookseller} title={'Книготорговцы'} time={'1ч 42м'} />
-                <MoviesCard preview={bookseller} title={'Книготорговцы'} time={'1ч 42м'} />
-                <MoviesCard preview={bookseller} title={'Книготорговцы'} time={'1ч 42м'} />
-                <MoviesCard preview={bookseller} title={'Книготорговцы'} time={'1ч 42м'} />
-                <MoviesCard preview={bookseller} title={'Книготорговцы'} time={'1ч 42м'} />
-                <MoviesCard preview={bookseller} title={'Книготорговцы'} time={'1ч 42м'} />
-                <MoviesCard preview={bookseller} title={'Книготорговцы'} time={'1ч 42м'} />
-                <MoviesCard preview={bookseller} title={'Книготорговцы'} time={'1ч 42м'} />
-                <MoviesCard preview={bookseller} title={'Книготорговцы'} time={'1ч 42м'} />
+                {movies.map((movie) => (
+                    <MoviesCard
+                        movie={movie}
+                        key={movie.id ? movie.id : movie.movieId}
+                        handleFilmClick={handleFilmClick}
+                        storedFilm={storedFilm}
+                    />
+                )).slice(0, filmsQuantity)}
             </ul>
-            <Route path="/movies">
-                <div className="cards__more">
-                    <button className="cards__button">Ещё</button>
-                </div>
-            </Route>
         </section>
     )
 }

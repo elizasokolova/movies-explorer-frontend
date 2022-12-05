@@ -12,7 +12,7 @@ const AboutMe = forwardRef((props, ref) => {
                 <p className="aboutme__subtitle">Фронтенд-разработчик, 23 года</p>
                 <p className="aboutme__description">Родилась в Челябинске, защитила диплом в Южно-Уральском Государственном Университете по специальности «Программная инженерия». С 2020 года совершенствуюсь в разработке сайтов. Увлекаюсь компьютерными играми, занимаюсь плаванием и люблю путешествовать.</p>
                 <ul className="aboutme__links">
-                    <li><a href="https://vk.com/lizsokol" className="aboutme__link" target='_blank' rel='noreferrer'>VK</a></li>
+                    <li><a href="https://vk.com/nord_falcon" className="aboutme__link" target='_blank' rel='noreferrer'>VK</a></li>
                     <li><a href="https://github.com/elizasokolova" className="aboutme__link" target='_blank' rel='noreferrer'>GitHub</a></li>
                 </ul>
                 </div>
