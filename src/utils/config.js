@@ -1,6 +1,6 @@
 export const mainApiUrl = "https://api.nomoreparties.co";
-// export const baseUrl = "https://api.lizasokol.nomorepartiesxyz.ru";
-export const baseUrl = "http://localhost:3001";
+export const baseUrl = "https://api.lizasokol.nomorepartiesxyz.ru";
+// export const baseUrl = "http://localhost:3001";
 
 export const validationMessages = {
     name: "Имя содержит недопустимые символы. Имя может содержать латинские буквы, кириллицу, пробел и дефис.",

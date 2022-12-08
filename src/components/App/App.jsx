@@ -17,7 +17,6 @@ import {InfoContext, InfoState} from "../../contexts/InfoContext";
 
 function App() {
     const history = useHistory();
-    let location = useLocation();
     const [validationState, setValidationState] = useState(defaultValidationState);
     const [tooltip, setTooltip] = useState(InfoState);
     const [loggedIn, setLoggedIn] = useState(false);
