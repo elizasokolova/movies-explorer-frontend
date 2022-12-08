@@ -6,4 +6,4 @@ https://www.figma.com/file/bXr3NDW61LeUPUqJLVbIKh/Diploma-(Copy)?node-id=891%3A3
 
 Фронтенд: https://lizasokol.nomorepartiesxyz.ru Бэкенд: https://api.lizasokol.nomorepartiesxyz.ru
 
-Ссылка на Пул реквест:
+Ссылка на Пул реквест: https://github.com/elizasokolova/movies-explorer-frontend/pull/3
