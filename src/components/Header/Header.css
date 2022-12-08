@@ -2,13 +2,13 @@
   background-color: #DDDEE3;
 }
 
-.header__logotype {
+.header__logo {
   width: 38px;
   height: 38px;
   transition: opacity 0.3s;
 }
 
-.header__logotype:hover {
+.header__logo:hover {
   opacity: .7;
 }
 
@@ -28,11 +28,11 @@
   background-color: white;
 }
 
-.header__menu {
+.header__nav {
   display: none;
 }
 
-.header__menu_visible {
+.header__nav_visible {
   display: block;
 }
 
@@ -44,7 +44,7 @@
   padding: 0;
 }
 
-.header__list-item {
+.header__item {
 display: inline-block;
 margin-right: 50px;
 font-size: 13px;
@@ -52,15 +52,15 @@ line-height: 18px;
 transition: opacity .3s;
 }
 
-.header__list-item:first-child{
+.header__item:first-child{
   margin-right: 20px;
 }
 
-.header__list-link-black{
+.header__link-black{
   font-weight: 500;
 }
 
-.header__list-link {
+.header__link {
   text-decoration: none;
   color: #000000;
   font-size: 14px;
@@ -75,7 +75,7 @@ transition: opacity .3s;
   border: 2px solid rgba(170, 170, 170, 0.2);
 }
 
-.header__image {
+.header__pic {
   width: 12px;
   height: 14px;
   background-image: url(../../images/AccountSmall.svg);
@@ -83,7 +83,7 @@ transition: opacity .3s;
   background-position: left;
 }
 
-.header__account {
+.header__acc {
 margin: 0;
 position: relative;
 font-weight: 500;
@@ -93,23 +93,19 @@ display: none;
 transition: opacity .3s;
 }
 
-.header__account_visible {
+.header__acc_visible {
 display: block;
 }
 
-.header__buttons {
+.header__but {
 display: block;
 }
 
-.header__buttons_hidden {
+.header__but_hidden {
 display: none;
 }
 
-.header__container_small {
-max-width: 396px;
-}
-
-.header__registration{
+.header__register{
 margin-right: 25px;
 background-color: transparent;
 border: none;
@@ -120,7 +116,7 @@ line-height: 16px;
 transition: opacity .3s;
 }
 
-.header__login {
+.header__log {
 padding: 8px 20px;
 background-color: #3456F3;
 color: white;
@@ -136,13 +132,13 @@ transition: opacity .3s;
 transition: opacity .3s;
 }
 
-.header__registration:hover, .header__login:hover, .header__logo:hover,
-.header__burger:hover, .header__account:hover, .header__list-item:hover {
+.header__register:hover, .header__log:hover, .header__logo:hover,
+.header__menu:hover, .header__acc:hover, .header__item:hover {
 cursor: pointer;
 opacity: .6;
 }
 
-.header__burger {
+.header__menu {
 display: none;
 border: none;
 background-color: transparent;
@@ -154,27 +150,24 @@ transition: opacity .3s;
 margin: auto 30px;
 }
 
-.header__menu {
+.header__nav {
 display: none;
 }
-.header__account-container {
+.header__acc-container {
 display: none;
 }
 
-.header__container_small {
-max-width: 396px;
-}
-.header__burger {
+.header__menu {
 width: 30px;
 height: 25px;
 position: relative;
 }
 
-.header__burger_visible {
+.header__menu_visible {
 display: block;
 }
 
-.header__burger-span {
+.header__span {
 content: '';
 position: absolute;
 top: 11px;
@@ -183,8 +176,8 @@ width: 100%;
 height: 3px;
 background-color: black;
 }
-.header__burger::before,
-.header__burger::after {
+.header__menu::before,
+.header__menu::after {
 content: '';
 position: absolute;
 width: 100%;
@@ -192,10 +185,10 @@ height: 3px;
 left: 0;
 background-color: black;
 }
-.header__burger::before {
+.header__menu::before {
 top: 0;
 }
-.header__burger::after {
+.header__menu::after {
 bottom: 0;
 }
 
@@ -205,28 +198,23 @@ bottom: 0;
 .header__container{
 margin: auto 14px;
 }
-
-.header__container_small {
-max-width: 260px;
-justify-content: center;
-}
-.header__login {
+.header__log {
 padding: 5px 12px;
 font-size: 11px;
 line-height: 15px;
 }
-.header__registration {
+.header__register {
 font-weight: 500;
 font-size: 11px;
 line-height: 15px;
 margin-right: 14px;
 }
-.header__burger {
+.header__menu {
 width: 20px;
 height: 20px;
 }
 
-.header__burger-span {
+.header__span {
 top: 8px;
 }
 }

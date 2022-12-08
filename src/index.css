@@ -15,7 +15,6 @@
 @import url(./components/Login/Login.css);
 @import url(./components/Profile/Profile.css);
 @import url(./components/NotFound/NotFound.css);
+@import url(./components/InfoToolTip/InfoTooltip.css);
 @import url(./components/Navigation/Navigation.css);
-@import url(./components/SavedMovies/SavedMovies.css);
-@import url(./components/FilterCheckBox/FilterCheckBox.css);
 @import url(./components/Preloader/PreLoader.css);

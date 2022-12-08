@@ -7,17 +7,17 @@ function Navigation({ isNavOpen, closeBurger }) {
         <nav className='navigation__container'>
           <button className='navigation__close' type='button' onClick={() => closeBurger()}/>
           <ul className='navigation__list'>
-            <li className='navigation__list-item'>
-              <Link to='/' className='navigation__list-link'>Главная</Link>
+            <li className='navigation__child'>
+              <Link to='/' className='navigation__link'>Главная</Link>
             </li>
-            <li className='navigation__list-item'>
-              <NavLink to='/movies' activeClassName='navigation__list-item_active' className='navigation__list-link'>Фильмы</NavLink>
+            <li className='navigation__child'>
+              <NavLink to='/movies' activeClassName='navigation__child_active' className='navigation__link'>Фильмы</NavLink>
             </li>
-            <li className='navigation__list-item'>
-              <NavLink to='/saved-movies' activeClassName='navigation__list-item_active' className='navigation__list-link'>Сохранённые фильмы</NavLink>
+            <li className='navigation__child'>
+              <NavLink to='/saved-movies' activeClassName='navigation__child_active' className='navigation__link'>Сохранённые фильмы</NavLink>
             </li>
-            <li className='navigation__list-item header__account header__account_visible'>
-              <NavLink to='/profile' className='header__list-link header__profile header__image'>Аккаунт</NavLink>
+            <li className='navigation__child header__acc header__acc_visible'>
+              <NavLink to='/profile' className='header__link header__profile header__pic'>Аккаунт</NavLink>
             </li>
           </ul>
         </nav>

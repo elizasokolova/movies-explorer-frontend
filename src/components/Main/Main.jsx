@@ -8,10 +8,10 @@ import AboutMe from '../AboutMe/AboutMe.jsx';
 import Portfolio from '../Portfolio/Portfolio.jsx';
 import Footer from '../Footer/Footer.jsx';
 
-function Main() {
+function Main({loggedIn}) {
     return(
         <main className='content'>
-            <Header/>
+            <Header loggedIn={loggedIn}/>
             <Promo/>
             <NavTab/>
             <AboutProject/>
