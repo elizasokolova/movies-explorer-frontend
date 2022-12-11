@@ -50,27 +50,34 @@ function App() {
              })
     }
 
-    useEffect(() => {
-        function checkUserData() {
-            mainApi.getUserInfo()
-                .then((res) => {
-                    if (res) {
-                        setCurrentUser(res);
-                        setLoggedIn(true);
-                    } else {
-                        setLoggedIn(false);
-                        setCurrentUser({});
-                        localStorage.clear();
-                        history.push("/signin");
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
+    function checkUserData() {
+        mainApi.getUserInfo()
+            .then((res) => {
+                if (res) {
+                    setCurrentUser(res);
+                    setLoggedIn(true);
+                } else {
                     setLoggedIn(false);
-                })
-        }
+                    setCurrentUser({});
+                    localStorage.clear();
+                    history.push("/signin");
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                setLoggedIn(false);
+            })
+    }
+
+    useEffect(() => {
         checkUserData();
     }, [loggedIn])
+
+    useEffect(() => {
+        if (loggedIn) {
+            checkUserData();
+        }
+    }, [])
 
     // useEffect(() => {
     //     if (loggedIn) {
