@@ -60,6 +60,7 @@ function App() {
                     setLoggedIn(false);
                     setCurrentUser({});
                     localStorage.clear();
+                    setStoredFilm([]);
                     history.push("/signin");
                 }
             })
