@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import {Route, Switch, withRouter, useHistory} from 'react-router-dom';
+import {Route, Switch, withRouter, useHistory, Redirect} from 'react-router-dom';
 import Main from '../Main/Main.jsx';
 import Movies from '../Movies/Movies.jsx';
 import Login from '../Login/Login.jsx';
@@ -50,8 +50,8 @@ function App() {
              })
     }
 
-    function checkUserData() {
-        mainApi.getUserInfo()
+    async function checkUserData() {
+        await mainApi.getUserInfo()
             .then((res) => {
                 if (res) {
                     setCurrentUser(res);
@@ -74,13 +74,13 @@ function App() {
         checkUserData();
     }, [loggedIn])
 
-    useEffect(() => {
-        if (loggedIn) {
-            checkUserData();
-        }
-    }, [])
-
     // useEffect(() => {
+    //     if (loggedIn) {
+    //         checkUserData();
+    //     }
+    // }, [])
+
+    // useEffect(() => {   // Не дает переходить на другие пути через строку в браузере((
     //     if (loggedIn) {
     //         history.push('/movies');
     //     }
@@ -216,15 +216,21 @@ function App() {
                             </ProtectedRoute>
 
                             <Route path='/signin'>
+                                {loggedIn ? (
+                                    <Redirect to="/" />
+                                ) : (
                                 <Login
                                     onLogin={onLogin}
-                                />
+                                /> )}
                             </Route>
 
                             <Route path='/signup'>
+                                {loggedIn ? (
+                                    <Redirect to="/" />
+                                ) : (
                                 <Register
                                     onRegister={onRegister}
-                                />
+                                /> )}
                             </Route>
 
                             <Route path='*'>
