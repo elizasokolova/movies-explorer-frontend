@@ -4,11 +4,12 @@ import { useState } from 'react';
 import likeSvg from '../../images/like.svg';
 import deleteSvg from '../../images/delete.svg';
 import dislikeSvg from '../../images/dislike.svg';
+import {MOVIESDURATION} from '../../utils/config';
 
 function getFormattedDuration (duration) {
-    let formattedDuration = `${duration % 60} м.`;
-    if (duration >= 60) {
-        formattedDuration = `${Math.trunc(duration / 60)} ч.` + formattedDuration;
+    let formattedDuration = `${duration % MOVIESDURATION} м.`;
+    if (duration >= MOVIESDURATION) {
+        formattedDuration = `${Math.trunc(duration / MOVIESDURATION)} ч.` + formattedDuration;
     }
     return formattedDuration;
 }

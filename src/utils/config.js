@@ -14,3 +14,16 @@ export const errorMessages = {
     500: "Ошибка сервера",
     400: "Введены некорректные данные, проверьте правильность ввода данных",
 };
+
+export const MOVIESDURATION = 60;
+
+export const MAXWIDTH = 1200;
+export const MIDDLEWIDTH = 910;
+export const MINIWIDTH = 758;
+export const CARDSMAXWIDTH = 16;
+export const CARDSMIDDLEWIDTH = 12;
+export const CARDSMEDIUMWIDTH = 8;
+export const CARDSMINIWIDTH = 5;
+export const MORECARDSMAXWIDTH = 4;
+export const MORECARDSMIDDLEWIDTH = 3;
+export const MORECARDSMINIWIDTH = 2;

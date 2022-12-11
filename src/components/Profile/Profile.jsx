@@ -1,4 +1,4 @@
-import React, {useState, useContext, useMemo} from "react";
+import React, {useState, useContext, useMemo, useEffect} from "react";
 import { Link } from "react-router-dom";
 import Header from '../Header/Header.jsx';
 import { CurrentUserContext } from "../../contexts/UserContext";
@@ -17,7 +17,8 @@ function Profile ({authorized, onUserUpdate, onLogout}) {
     const [requestMessage, setRequestMessage] = useState("");
     const { validationState, setValidationState } = store;
     const [isChange, setIsChange] = useState(false); // смена кнопок редактировать/сохранить
-    const [isNewData, setIsNewData] = useState(true); // проверка на внесение изменений
+    const [isNewData, setIsNewData] = useState(false); // проверка на внесение изменений
+    const [blockButton, setBlockButton] = useState(true);
 
     function handleChange(event) {
         setRequestMessage("");
@@ -37,10 +38,15 @@ function Profile ({authorized, onUserUpdate, onLogout}) {
         setIsNewData(false);
     }
 
+    useEffect(() => {
+        setBlockButton(inputError || !isNewData || (name === currentUser.name && email === currentUser.email));
+    }, [inputError, isNewData, form]);
+
     function saveProfile(event) {
         event.preventDefault();
         onUserUpdate(name, email)
             .then(() => {
+                setIsNewData(false);
                 setIsChange(false);
                 setTooltip({
                 ...tooltip,
@@ -50,7 +56,8 @@ function Profile ({authorized, onUserUpdate, onLogout}) {
             })})
             .catch(({ status, message }) => {
                 console.log(message);
-                setIsChange(true);
+                setIsNewData(false);
+                setIsChange(false);
                 setRequestMessage(errorMessages[status]);
                 setTooltip({
                     ...tooltip,
@@ -60,8 +67,6 @@ function Profile ({authorized, onUserUpdate, onLogout}) {
                 });
             })
     }
-
-    const blockButton = (inputError && isChange) || !isNewData;
 
     function handleLogout (event) {
         event.preventDefault();
@@ -82,11 +87,16 @@ function Profile ({authorized, onUserUpdate, onLogout}) {
                        value={email} onChange={handleChange} error={validationState.profile.errors.email}
                        disabled={!isChange} required/>
                 <p className="profile__message">{requestMessage}</p>
-                <button className={`profile__submit-edit ${blockButton && "profile__submit-edit_disabled"}`}
-                        type={isChange ? "submit" : "button"} onClick={isChange ? saveProfile : changeProfile}
-                        disabled={blockButton}>{isChange ? "Сохранить" : "Редактировать"}</button>
+
+                <button className={`profile__submit-edit ${isChange && "profile__submit-edit_hidden"}`}
+                        type="button" onClick={changeProfile}>Редактировать</button>
+
+                <button className={`profile__submit-edit ${!isChange && "profile__submit-edit_hidden"} ${blockButton && "profile__submit-edit_disabled"}`}
+                        type="submit" onClick={saveProfile}
+                        disabled={blockButton}>Сохранить</button>
+
                 <Link to="/signin" className="profile__exit-button">
-                    <button onClick={handleLogout} className="profile__exit">Выйти из аккаунта</button>
+                    <button onClick={handleLogout} className={`profile__exit ${isChange && "profile__exit_hidden"}`}>Выйти из аккаунта</button>
                 </Link>
             </form>
         </section>

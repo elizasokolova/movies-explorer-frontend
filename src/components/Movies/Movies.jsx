@@ -8,7 +8,7 @@ import moviesApi from "../../utils/MoviesApi";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
-function Movies({ handleFilmClick, filmsQuantity, getMoreFilms, storedFilm, loggedIn, authorized }) {
+function Movies({ handleFilmClick, filmsQuantity, getMoreFilms, storedFilm, authorized }) {
     const [isLoading, setIsLoading] = useState(false);
     const [films, setFilms] = useState(JSON.parse(localStorage.getItem('films')) ?? []);
     const [filmControl, setFilmControl] = useState(JSON.parse(localStorage.getItem('check-films')) ?? false);

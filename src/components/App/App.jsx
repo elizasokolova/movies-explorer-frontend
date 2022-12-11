@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import {Route, Switch, useHistory, useLocation} from 'react-router-dom';
+import {Route, Switch, withRouter, useHistory} from 'react-router-dom';
 import Main from '../Main/Main.jsx';
 import Movies from '../Movies/Movies.jsx';
 import Login from '../Login/Login.jsx';
@@ -14,6 +14,7 @@ import mainApi from "../../utils/MainApi";
 import { CurrentUserContext } from "../../contexts/UserContext.js";
 import {defaultValidationState, ValidationContext,} from "../../contexts/ValidationContext.js";
 import {InfoContext, InfoState} from "../../contexts/InfoContext";
+import {MAXWIDTH, MIDDLEWIDTH, MINIWIDTH, CARDSMAXWIDTH, CARDSMIDDLEWIDTH, CARDSMEDIUMWIDTH, CARDSMINIWIDTH, MORECARDSMAXWIDTH, MORECARDSMIDDLEWIDTH, MORECARDSMINIWIDTH } from "../../utils/config";
 
 function App() {
     const history = useHistory();
@@ -25,8 +26,8 @@ function App() {
     const [width, setWidth] = useState(window.innerWidth);
 
     const [storedFilm, setStoredFilm] = useState(JSON.parse(localStorage.getItem('store')) ?? []);
-    const [newDigit, setNewDigit] = useState(4);
-    const [filmsQuantity, setFilmsQuantity] = useState(16);
+    const [newDigit, setNewDigit] = useState(MORECARDSMAXWIDTH);
+    const [filmsQuantity, setFilmsQuantity] = useState(CARDSMAXWIDTH);
 
     /* -------------------- Авторизация / Регистрация / Профиль -------------------- */
 
@@ -43,35 +44,42 @@ function App() {
     function onLogin (email, password) {
          return mainApi.login(email, password)
              .then(() => {
-                 history.push("/movies");
-                 checkUserData();
-                 // setCurrentUser(email, password);
-                 // setLoggedIn(true);
+                 setCurrentUser(email, password);
+                 setLoggedIn(true);
+                 history.push('/movies');
              })
     }
 
-    function checkUserData() {
-        mainApi.getUserInfo()
-            .then((res) => {
-                if (res) {
-                    setCurrentUser(res);
-                    setLoggedIn(true);
-                } else {
-                    setLoggedIn(false);
-                    setCurrentUser({});
-                    localStorage.clear();
-                    history.push("/signin");
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-                setLoggedIn(false);
-            })
-    }
-
     useEffect(() => {
+        function checkUserData() {
+            mainApi.getUserInfo()
+                .then((res) => {
+                    if (res) {
+                        setCurrentUser(res);
+                        setLoggedIn(true);
+                    } else {
+                        setLoggedIn(false);
+                        setCurrentUser({});
+                        localStorage.clear();
+                        history.push("/signin");
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                    setLoggedIn(false);
+                })
+        }
         checkUserData();
     }, [loggedIn])
+
+    // useEffect(() => {
+    //     if (loggedIn) {
+    //         history.push('/movies');
+    //     }
+    //     else {
+    //         history.push('/');
+    //     }
+    // }, [loggedIn])
 
     function onLogout () {
         mainApi.logout()
@@ -128,19 +136,19 @@ function App() {
     }
 
     useEffect(() => {
-        if (width >= 1200) {
-            setNewDigit(4);
-            setFilmsQuantity(16);
-        } else if (width < 1200 && width >= 910) {
-            setNewDigit(3);
-            setFilmsQuantity(12);
-        } else if (width < 910 && width >= 758) {
-            setNewDigit(2);
-            setFilmsQuantity(8);
+        if (width >= MAXWIDTH) {
+            setNewDigit(MORECARDSMAXWIDTH);
+            setFilmsQuantity(CARDSMAXWIDTH);
+        } else if (width < MAXWIDTH && width >= MIDDLEWIDTH) {
+            setNewDigit(MORECARDSMIDDLEWIDTH);
+            setFilmsQuantity(CARDSMIDDLEWIDTH);
+        } else if (width < MIDDLEWIDTH && width >= MINIWIDTH) {
+            setNewDigit(MORECARDSMINIWIDTH);
+            setFilmsQuantity(CARDSMEDIUMWIDTH);
         }
-        else if (width < 758) {
-            setNewDigit(2);
-            setFilmsQuantity(5);
+        else if (width < MINIWIDTH) {
+            setNewDigit(MORECARDSMINIWIDTH);
+            setFilmsQuantity(CARDSMINIWIDTH);
         }
     }, [width]);
 
@@ -222,4 +230,4 @@ function App() {
     );
 }
 
-export default App;
+export default withRouter(App);

@@ -59,6 +59,8 @@
 
   .profile__submit-edit {
     width: 100%;
+    display: flex;
+    justify-content: center;
     max-width: 110px;
     font-size: 13px;
     font-weight: 400;
@@ -76,13 +78,17 @@
     opacity: .6;
   }
 
+.profile__submit-edit_hidden {
+  display: none;
+}
+
   .profile__submit-edit_disabled {
-    opacity: .5;
+    opacity: .8;
   }
 
   .profile__submit-edit_disabled:hover {
     cursor: auto;
-    opacity: .5;
+    opacity: .8;
   }
 
   .profile__exit {
@@ -92,11 +98,16 @@
     font-weight: 500;
     line-height: 16px;
     border: none;
+    display: flex;
     background-color: transparent;
     text-align: center;
     transition: opacity 0.3s;
     padding: 0;
   }
+
+.profile__exit_hidden {
+  display: none;
+}
 
   .profile__exit:hover {
     cursor: pointer;
@@ -107,6 +118,7 @@
     max-width: 120px;
     max-height: 17px;
     margin: 16px auto 70px;
+    text-decoration: none;
   }
 
   .profile__error{

@@ -8,7 +8,7 @@ import Footer from "../Footer/Footer";
 
 function SavedMovies({films, handleFilmClick, authorized}) {
     const [filmControl, setFilmControl] = useState(JSON.parse(localStorage.getItem('check-savedFilms')) ?? false);
-    const [localFilm, setLocalFilm] = useState(localStorage.getItem('savedFilms-find') ?? '');
+    const [localFilm, setLocalFilm] = useState( '');
     const filteredFilms = useFilterFilms(films, filmControl, localFilm);
     const [localSavedFilms, setLocalSavedFilms] = useState(JSON.parse(localStorage.getItem('filtered-savedFilms')) ?? filteredFilms);
     const [message, setMessage] = useState('У вас нет сохраненных фильмов');
@@ -19,7 +19,6 @@ function SavedMovies({films, handleFilmClick, authorized}) {
     }
 
     function onValueChange(value) {
-        localStorage.setItem('savedFilms-find', value);
         setLocalFilm(value);
     }
 
