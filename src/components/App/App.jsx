@@ -20,7 +20,7 @@ function App() {
     const history = useHistory();
     const [validationState, setValidationState] = useState(defaultValidationState);
     const [tooltip, setTooltip] = useState(InfoState);
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState();
     const [currentUser, setCurrentUser] = useState({});
     const authorized = true;
     const [width, setWidth] = useState(window.innerWidth);
@@ -43,8 +43,8 @@ function App() {
 
     function onLogin (email, password) {
          return mainApi.login(email, password)
-             .then(() => {
-                 setCurrentUser(email, password);
+             .then((res) => {
+                 setCurrentUser(res);
                  setLoggedIn(true);
                  history.push('/movies');
              })
