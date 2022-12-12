@@ -49,7 +49,6 @@ function App() {
                  history.push('/movies');
              })
     }
-
     async function checkUserData() {
         await mainApi.getUserInfo()
             .then((res) => {

@@ -10,7 +10,7 @@ import {errorMessages} from "../../utils/config";
 
 function Profile ({authorized, onUserUpdate, onLogout}) {
     const currentUser = useContext(CurrentUserContext);
-    const [form, setForm] = useState({ name: currentUser.name, email: currentUser.email });
+    const [form, setForm] = useState({name: "", email: ""});
     const { name, email } = form;
     const { tooltip, setTooltip } = useContext(InfoContext);
     const store = useContext(ValidationContext);
@@ -72,6 +72,13 @@ function Profile ({authorized, onUserUpdate, onLogout}) {
         event.preventDefault();
         onLogout();
     }
+
+    useEffect(() => {
+        setForm({
+            name: currentUser.name,
+            email: currentUser.email,
+        });
+    }, [currentUser.name, currentUser.email]);
 
     return (
         <section className="profile">
