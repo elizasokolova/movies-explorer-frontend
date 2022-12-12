@@ -83,15 +83,15 @@ function Profile ({authorized, onUserUpdate, onLogout}) {
     return (
         <section className="profile">
             <Header authorized={authorized}/>
-            <h1 className="profile__title">Привет, {name}!</h1>
+            <h1 className="profile__title">Привет, {name || ""}!</h1>
             <form className="profile__forms">
                 <Input titleClass="profile__subtitle" errorClass="profile__error" inputClass="profile__input"
                        labelClass="profile__inputs" name="name" type="text" title="Имя"
-                       value={name} onChange={handleChange} error={validationState.profile.errors.name}
+                       value={name || ""} onChange={handleChange} error={validationState.profile.errors.name}
                        disabled={!isChange} required/>
                 <Input titleClass="profile__subtitle" errorClass="profile__error" inputClass="profile__input"
                        labelClass="profile__inputs" name="email" type="text" title="Email"
-                       value={email} onChange={handleChange} error={validationState.profile.errors.email}
+                       value={email || ""} onChange={handleChange} error={validationState.profile.errors.email}
                        disabled={!isChange} required/>
                 <p className="profile__message">{requestMessage}</p>
 
