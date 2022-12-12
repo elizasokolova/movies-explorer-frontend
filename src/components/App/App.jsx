@@ -74,20 +74,11 @@ function App() {
         checkUserData();
     }, [loggedIn])
 
-    // useEffect(() => {
-    //     if (loggedIn) {
-    //         checkUserData();
-    //     }
-    // }, [])
-
-    // useEffect(() => {   // Не дает переходить на другие пути через строку в браузере((
-    //     if (loggedIn) {
-    //         history.push('/movies');
-    //     }
-    //     else {
-    //         history.push('/');
-    //     }
-    // }, [loggedIn])
+    useEffect(() => {
+        if (loggedIn) {
+            checkUserData();
+        }
+    }, [])
 
     function onLogout () {
         mainApi.logout()
