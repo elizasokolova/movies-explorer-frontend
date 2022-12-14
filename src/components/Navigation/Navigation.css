@@ -34,7 +34,7 @@
   margin: 0;
 }
 
-.navigation__list-item {
+.navigation__child {
   font-weight: 500;
   font-size: 18px;
   line-height: 22px;
@@ -42,20 +42,20 @@
   margin: 0 0 28px 0;
   transition: opacity .3s;
 }
-.navigation__list-item:last-child {
+.navigation__child:last-child {
   margin-top: 260px;
 }
 
-.navigation__list-link {
+.navigation__link {
   color: inherit;
   text-decoration: none;
 }
 
-.navigation__list-item_active {
+.navigation__child_active {
   border-bottom: 2px solid black;
 }
 
-.navigation__list-item:hover, .navigation__close:hover {
+.navigation__child:hover, .navigation__close:hover {
   cursor: pointer;
   opacity: .6;
 }
